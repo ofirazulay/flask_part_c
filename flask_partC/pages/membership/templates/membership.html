@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'membership' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('membership.static', filename='css/membership.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+
+ <h1>your Membership Cards</h1>
+
+    <table id="table1">
+ <thead>
+            <tr>
+              <th>Treatment Type</th>
+              <th>Total number of treatments</th>
+              <th>Number of treatments remaining</th>
+              </td></th>
+            </tr>
+
+            </thead>
+    <tbody>
+      {% for card in userCardsList %}
+        <tr>
+          <td>{{ card.card_Type }}</td>
+          <td>{{ card.card_Total }}</td>
+          <td>{{ card.card_remaining }}</td>
+            {% endfor %}
+            </tbody>
+          </table>
+
+<button id="purchaseMore" onclick="">To purchase more Treatments </button>
+
+
+
+    <!------------------------------------------- MODAL POP UP ------------------------------------------->
+<!-- The Modal -->
+<div id="myModalD" class="modalD">
+
+  <!-- Modal content -->
+  <div  class="modal-contentD">
+    <span class="closeD">&times;</span>
+
+
+    <div class="price_list">
+        <h4  id="inpTEXTtitle" >MENU:</h4>
+        <form  method="post" >
+          <!-- Shiatsu - single treatment -->
+
+          <input type="radio" id="Shiatsu1" name="Treatment" value="Shiatsu1"  required onclick="checkPrice()" checked >
+          <label for="Shiatsu1"  class="inpTEXT">
+            Shiatsu - single treatment
+          </label><br>
+          <!-- Shiatsu - 10 treatments -->
+          <input type="radio" id="Shiatsu10" name="Treatment" value="Shiatsu10" onclick="checkPrice()"  >
+          <label for="Shiatsu10" class="inpTEXT">
+            Shiatsu - 10 treatments
+          </label><br>
+
+
+          <input type="radio" id="Chinese1" name="Treatment" value="Chinese1" onclick="checkPrice()" >
+          <label for="Chinese1"  class="inpTEXT">
+            Chinese acupuncture - single treatment
+          </label><br>
+
+          <input type="radio" id="Chinese10" name="Treatment" value="Chinese10"  onclick="checkPrice()" >
+          <label for="Chinese10"  class="inpTEXT">
+            Chinese acupuncture - 10 treatments
+        </label><br>
+
+          <input type="radio" id="Reflexology1" name="Treatment" value="Reflexology1" onclick="checkPrice()" >
+          <label for="Reflexology1"  class="inpTEXT">
+            Reflexology - single treatment
+          </label><br>
+
+          <input type="radio" id="Reflexology10" name="Treatment" value="Reflexology10"  onclick="checkPrice()" >
+          <label for="Reflexology10"  class="inpTEXT">
+            Reflexology - 10 treatments
+        </label><br>
+<br>
+    </form>
+
+
+         <br> <label  class="inpTEXT" id="price">Price: 160 ILS </label><br>
+
+
+  <div class="purchase_btn" id="Modalbtn">
+        <br> <br><button  class="click" onclick="window.location = 'paymentPage.html#jump'" >Quick purchase</button><br>
+      </div>
+
+
+
+  </div>
+  </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('membership.static', filename='js/membership.js') }}"></script>
+{% endblock %}

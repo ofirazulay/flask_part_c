@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'calander' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('calander.static', filename='css/calander.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+   <h1>Your Weekly Schedule</h1>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('calander.static', filename='js/calander.js') }}"></script>
+{% endblock %}

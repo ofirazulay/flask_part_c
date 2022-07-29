@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'myTreatments' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('myTreatments.static', filename='css/myTreatments.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+
+
+    <h1>your booked treatments</h1>
+
+ <table id="table1">
+ <thead>
+            <tr>
+              <th>Date</th>
+              <th>Day</th>
+              <th>Hour</th>
+              <th>Branch</th>
+              <th>Type</th>
+              <th>Therapist</th>
+              <th>  <button id="remove_button" onclick="">REMOVE</button>
+              </td></th>
+            </tr>
+
+            </thead>
+    <tbody>
+      {% for treatment in UsertreatmentsList %}
+        <tr>
+          <td>{{ treatment.treatment_Date }}</td>
+          <td>{{ treatment.treatment_Day }}</td>
+          <td>{{ treatment.treatment_Hour }}</td>
+          <td>{{ treatment.treatment_Branch }}</td>
+          <td>{{ treatment.treatment_Type }}</td>
+          <td>{{ treatment.treatment_Therapist }}</td>
+            {% endfor %}
+            </tbody>
+          </table>
+            <br>
+          <br>
+
+          <button id="addTreat" class="addTreat" onclick="chooseKindShow()" >Order additional treatment</button>
+        <span id="chooseKind">
+
+
+                            <select id="kindsList" list="Choosekind" name="Choosekind" placeholder="choose treatment" required onchange="GetSelect()"><br>
+                                <option value="reflexology"> reflexology</option>
+                                <option value="Chinese Acupuncture">Chinese Acupuncture</option>
+                                <option value="Shiatsu therapy"> Shiatsu therapy</option>
+                                </select>
+
+
+            </span>
+
+            <button id="Search"  class="btn" >Search For Treatment</button>
+            <button id="cancleOrder" onclick="chooseKindHide()">cancle</button>
+
+<!-- The Modal -->
+<div id="myModalC" class="modalB">
+
+  <div class="modal-contentB" >
+    <span  class="close2">&times;</span>
+    <h4 id="MISSING" class="title" >  ------ MISSING INPUT -----
+      <br>
+      Please select a treatment type </h4>
+
+
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<div id="myModalB" class="modalB">
+
+  <!-- Modal content -->
+  <div class="modal-contentB" id="innerModal">
+    <span class="close">&times;</span>
+    <br> <label  class="title" id="TypeOf"> </label><br>
+    <h4  class="title" >How Do You Want To Filter?</h4>
+
+    <button id="ShowAllBtn"  class="btnTEXT" >Show all </button>
+    <button id="b" class="btnTEXT" onclick="sortByDate()"> closest date possible</button>
+    <!-- <button id="ShowNearestBranchBtn"  onclick="GetLocation()" sclass="btnTEXT" > The nearest branch</button>
+    <p id="p1"></p> -->
+    <button id="button" class="btnTEXT" onclick="GetLocation()" >The nearest branch </button>
+    <p id="p1"></p>
+    <p id="p2"></p>
+
+
+<span id="details">
+
+
+
+  <table id="results" class="w3-table-all">
+    <thead>
+      <tr class="header">
+        <th id="datetime" class="Date" scope="col"> Date </th>
+        <th id="DayTitle" class="Day" scope="col">Day</th>
+        <th id="HourTitle" class="Houe" scope="col">Hour</th>
+        <th id="BranchTitle" class="Branch" scope="col">Branch</th>
+        <th id="TherapistTitle" class="Therapist" scope="col">Therapist</th>
+        <th class="Select" scope="col">Selecet treatment</th>
+      </tr>
+      <thead>
+        <tbody>
+       {% for optionalTreatment in optionalTreatmentsList %}
+        <tr>
+          <td>{{ optionalTreatment.treatment_Date }}</td>
+          <td>{{ optionalTreatment.treatment_Day }}</td>
+          <td>{{ optionalTreatment.treatment_Hour }}</td>
+          <td>{{ optionalTreatment.treatment_Branch }}</td>
+          <td>{{ optionalTreatment.treatment_Type }}</td>
+          <td>{{ optionalTreatment.treatment_Therapist }}</td>
+       {% endfor %}
+
+    </tbody>
+    </table>
+
+
+
+
+</span>
+
+
+
+  </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('myTreatments.static', filename='js/myTreatments.js') }}"></script>
+{% endblock %}
