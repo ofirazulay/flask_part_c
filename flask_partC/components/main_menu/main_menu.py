@@ -34,7 +34,7 @@ def signIn_page():
         userPassword = request.form['psw']
         returndUser=user.login(userEmail,userPassword)
         if returndUser!='notFound':
-            session['username'] = returndUser[4]
+            session['username'] = returndUser[0]
             session['registered'] = True
             session['notFound'] = False
             return render_template('userHomePage.html')

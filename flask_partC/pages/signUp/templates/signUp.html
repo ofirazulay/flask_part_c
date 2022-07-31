@@ -9,10 +9,22 @@
 {% block page_body_main_content %}
 
 
+     {% for category, message in get_flashed_messages(with_categories=True) %}
+        {% if category=='error' %}
+        <div class="{{category}}" id="alertDiv">
+        <h3> {{category}}:</h3>
+        <h4 id="flashed_messages">{{ message }}</h4>
+               {% endif %}
+        <a class="close" style="display:block; text-decoration: none;" onclick="closeFunction()">&times;</a>
+        </div>
+    {% endfor %}
+
+
+
     <span id="getDetails" >
 
 
-        <h1 id="touch">Sign Up!</h1 > <form action="javascript:SignUpEnd()">
+        <h1 id="touch">Sign Up!</h1 > <form action="/add_new_user"  method="POST">
 
         <label for="full name"  class="lables" id="full name label" >full name</label> <br>
         <input type="text" id="full name" class="data" name="full name" autocomplete="on" placeholder="first last" pattern="[a-zA-Z ]{1,40}" required><br><br>
@@ -20,7 +32,7 @@
 
 
         <label for="birthDate"  class="lables" id="birthDate" >date of birth</label> <br>
-        <input type="date" id="txtDate" />
+        <input type="date" id="txtDate" name="birthDate"/>
         <br><br>
 
 
